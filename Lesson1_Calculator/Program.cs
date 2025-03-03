@@ -11,7 +11,7 @@ namespace Lesson1_Calculator
     class Calculator
     {
 
-        public string number1, number2;
+        public double number1, number2;
         public double Add(double value1,double value2)
         {
              return value1 + value2; 
@@ -55,14 +55,14 @@ namespace Lesson1_Calculator
     {
         static void Main()
         {
-            Calculator calculator = new Calculator();
+            Calculator calc = new Calculator();
             Console.OutputEncoding = Encoding.UTF8;
 
             while (true)
             {
                 Console.Clear();
                 Console.WriteLine("Введіть перше число:");
-                if (!double.TryParse(Console.ReadLine(), out double number1))
+                if (!double.TryParse(Console.ReadLine(), out calc.number1))
                 {
                     Console.WriteLine("Помилка: некоректне число.");
                     Console.ReadKey();
@@ -80,11 +80,10 @@ namespace Lesson1_Calculator
                 Console.Write("\nВведіть оператор: ");
                 string oper = Console.ReadLine();
 
-                double number2 = 0;
                 if (oper != "sqrt") 
                 {
                     Console.WriteLine("\nВведіть друге число:");
-                    if (!double.TryParse(Console.ReadLine(), out number2))
+                    if (!double.TryParse(Console.ReadLine(), out calc.number2))
                     {
                         Console.WriteLine("Помилка: некоректне число.");
                         Console.ReadKey();
@@ -98,26 +97,26 @@ namespace Lesson1_Calculator
                 switch (oper)
                 {
                     case "+":
-                        result = calculator.Add(number1, number2);
+                        result = calc.Add(calc.number1, calc.number2);
                         break;
                     case "-":
-                        result = calculator.Subtract(number1, number2);
+                        result = calc.Subtract(calc.number1, calc.number2);
                         break;
                     case "*":
-                        result = calculator.Multiply(number1, number2);
+                        result = calc.Multiply(calc.number1, calc.number2);
                         break;
                     case "/":
-                        result = calculator.Divide(number1, number2);
+                        result = calc.Divide(calc.number1, calc.number2);
                         if (double.IsNaN(result))
                         {
                             validOperation = false;
                         }
                         break;
                     case "^":
-                        result = calculator.Power(number1, number2);
+                        result = calc.Power(calc.number1, calc.number2);
                         break;
                     case "sqrt":
-                        result = calculator.SquareRoot(number1);
+                        result = calc.SquareRoot(calc.number1);
                         if (double.IsNaN(result))
                         {
                             validOperation = false;
